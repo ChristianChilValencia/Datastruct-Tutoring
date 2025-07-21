@@ -18,6 +18,9 @@ struct Student* createStudent(char name[], int grade) {
     return newStudent;
 }
 
+
+// github tutorial chuchuhcu
+
 // Insert student at the end
 void addStudent(struct Student** head, char name[], int grade) {
     struct Student* newStudent = createStudent(name, grade);
