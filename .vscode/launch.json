@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/valen/Desktop/Datastruct Tutoring",
-      "program": "c:/Users/valen/Desktop/Datastruct Tutoring/build/Debug/outDebug",
+      "cwd": "c:/Users/valen/Desktop/Datastruct Tutoring/Array Lessons",
+      "program": "c:/Users/valen/Desktop/Datastruct Tutoring/Array Lessons/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
