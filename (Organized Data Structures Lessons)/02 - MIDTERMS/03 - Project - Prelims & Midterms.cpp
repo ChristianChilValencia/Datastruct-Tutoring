@@ -1,204 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//ARRAYS FUNCTIONS
-int arrlinsearch(int arr[], int size, int value) {
-    for (int i = 0; i < size; i++) {
-        if (arr[i] == value) {
-            return i;
-        }
-    }
-    return -1;
-}
-int arrbinsearch(int arr[], int size, int value) {
-    int left = 0;
-    int right = size - 1;
-
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-
-        if (arr[mid] == value) {
-            return mid;
-        }
-
-        if (arr[mid] < value) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
-    }
-
-    return -1;
-}
-void arrinsert(int arr[], int *size, int pos, int value) {
-    int i;
-    for (i = *size - 1; i >= pos - 1; i--) {
-        arr[i + 1] = arr[i];
-    }
-    arr[pos - 1] = value;
-    (*size)++;
-}
-void arrdelete(int arr[], int *size, int pos) {
-    int i;
-    for (i = pos - 1; i < *size - 1; i++) {
-        arr[i] = arr[i + 1];
-    }
-    (*size)--;
-}
-void arrdisplay(int arr[], int size) {
-    printf("Current Array: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n\n");
-}
-
-//LINKED LIST FUNCTIONS
+// Structure definitions
 typedef struct node {
     int value;
     struct node *next;
 } Node;
-int listsearch(Node *head, int value) {
-    int pos = 0;
-    Node *current = head;
-    while (current != NULL) {
-        if (current->value == value) {
-            return pos;
-        }
-        current = current->next;
-        pos++;
-    }
-    return -1;
-}
-void listinsert(Node **head, int pos, int value) {
-    Node *new_node = (Node*) malloc(sizeof(Node));
-    new_node->value = value;
-    if (pos == 0) {
-        new_node->next = *head;
-        *head = new_node;
-    } else {
-        Node *current = *head;
-        for (int i = 0; i < pos - 1; i++) {
-            current = current->next;
-        }
-        new_node->next = current->next;
-        current->next = new_node;
-    }
-}
-void listdelete(Node **head, int pos) {
-    if (pos == 0) {
-        Node *temp = *head;
-        *head = (*head)->next;
-        free(temp);
-    } else {
-        Node *current = *head;
-        for (int i = 0; i < pos - 1; i++) {
-            current = current->next;
-        }
-        Node *temp = current->next;
-        current->next = temp->next;
-        free(temp);
-    }
-}
-void listdisplay(Node *head) {
-    Node *current = head;
-    printf("Current Linked List: ");
-    while (current != NULL) {
-        printf("%d ", current->value);
-        current = current->next;
-    }
-    printf("\n");
-}
 
-//STACKS FUNCTIONS
 typedef struct {
     int* data;
     int top;
     int max_size;
 } Stack;
-void initializeStack(Stack* stack) {
-    stack->top = -1;
-    stack->data = (int*) malloc(stack->max_size * sizeof(int));
-}
-int isEmpty(Stack* stack) {
-    return stack->top == -1;
-}
-int isFull(Stack* stack) {
-    return stack->top == stack->max_size - 1;
-}
-void push(Stack* stack, int value) {
-    if (isFull(stack)) {
-        printf("Stack is full. Cannot push %d.\n", value);
-    } else {
-        stack->data[++stack->top] = value;
-    }
-}
-int pop(Stack* stack) {
-    if (isEmpty(stack)) {
-        printf("Stack is empty. Cannot pop.\n");
-        return -1;
-    } else {
-        int poppedValue = stack->data[stack->top--];
-        return poppedValue;
-    }
-}
-void displayStack(Stack* stack) {
-    if (isEmpty(stack)) {
-        printf("Stack is empty.\n");
-    } else {
-        printf("Stack contents: ");
-        for (int i = 0; i <= stack->top; i++) {
-            printf("%d ", stack->data[i]);
-        }
-        printf("\n");
-    }
-}
 
-//QUEUE FUNCTIONS
 typedef struct {
     int* data;
     int front;
     int rear;
     int max_size;
 } Queue;
-void initializeQueue(Queue* queue) {
-    queue->front = 0;
-    queue->rear = -1;
-    queue->data = (int*) malloc(queue->max_size * sizeof(int));
-}
-int isQueueEmpty(Queue* queue) {
-    return queue->rear < queue->front;
-}
-int isQueueFull(Queue* queue) {
-    return queue->rear == queue->max_size - 1;
-}
-void enqueue(Queue* queue, int value) {
-    if (isQueueFull(queue)) {
-        printf("Queue is full. Cannot enqueue %d.\n", value);
-    } else {
-        queue->data[++queue->rear] = value;
-    }
-}
-int dequeue(Queue* queue) {
-    if (isQueueEmpty(queue)) {
-        printf("Queue is empty. Cannot dequeue.\n");
-        return -1;
-    } else {
-        int dequeuedValue = queue->data[queue->front++];
-        return dequeuedValue;
-    }
-}
-void displayQueue(Queue* queue) {
-    if (isQueueEmpty(queue)) {
-        printf("Queue is empty.\n");
-    } else {
-        printf("Queue contents: ");
-        for (int i = queue->front; i <= queue->rear; i++) {
-            printf("%d ", queue->data[i]);
-        }
-        printf("\n");
-    }
-}
+
+// Function declarations (prototypes)
+// ARRAYS FUNCTIONS
+int arrlinsearch(int arr[], int size, int value);
+int arrbinsearch(int arr[], int size, int value);
+void arrinsert(int arr[], int *size, int pos, int value);
+void arrdelete(int arr[], int *size, int pos);
+void arrdisplay(int arr[], int size);
+
+// LINKED LIST FUNCTIONS
+int listsearch(Node *head, int value);
+void listinsert(Node **head, int pos, int value);
+void listdelete(Node **head, int pos);
+void listdisplay(Node *head);
+
+// STACKS FUNCTIONS
+void initializeStack(Stack* stack);
+int isEmpty(Stack* stack);
+int isFull(Stack* stack);
+void push(Stack* stack, int value);
+int pop(Stack* stack);
+void displayStack(Stack* stack);
+
+// QUEUE FUNCTIONS
+void initializeQueue(Queue* queue);
+int isQueueEmpty(Queue* queue);
+int isQueueFull(Queue* queue);
+void enqueue(Queue* queue, int value);
+int dequeue(Queue* queue);
+void displayQueue(Queue* queue);
+
 
 int main() {
     int size, i, choice, pos, value, num;
@@ -422,4 +273,188 @@ int main() {
         }
     }
     return 0;
+}
+
+//ARRAYS FUNCTIONS
+int arrlinsearch(int arr[], int size, int value) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == value) {
+            return i;
+        }
+    }
+    return -1;
+}
+int arrbinsearch(int arr[], int size, int value) {
+    int left = 0;
+    int right = size - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == value) {
+            return mid;
+        }
+
+        if (arr[mid] < value) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return -1;
+}
+void arrinsert(int arr[], int *size, int pos, int value) {
+    int i;
+    for (i = *size - 1; i >= pos - 1; i--) {
+        arr[i + 1] = arr[i];
+    }
+    arr[pos - 1] = value;
+    (*size)++;
+}
+void arrdelete(int arr[], int *size, int pos) {
+    int i;
+    for (i = pos - 1; i < *size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    (*size)--;
+}
+void arrdisplay(int arr[], int size) {
+    printf("Current Array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n\n");
+}
+
+//LINKED LIST FUNCTIONS
+int listsearch(Node *head, int value) {
+    int pos = 0;
+    Node *current = head;
+    while (current != NULL) {
+        if (current->value == value) {
+            return pos;
+        }
+        current = current->next;
+        pos++;
+    }
+    return -1;
+}
+void listinsert(Node **head, int pos, int value) {
+    Node *new_node = (Node*) malloc(sizeof(Node));
+    new_node->value = value;
+    if (pos == 0) {
+        new_node->next = *head;
+        *head = new_node;
+    } else {
+        Node *current = *head;
+        for (int i = 0; i < pos - 1; i++) {
+            current = current->next;
+        }
+        new_node->next = current->next;
+        current->next = new_node;
+    }
+}
+void listdelete(Node **head, int pos) {
+    if (pos == 0) {
+        Node *temp = *head;
+        *head = (*head)->next;
+        free(temp);
+    } else {
+        Node *current = *head;
+        for (int i = 0; i < pos - 1; i++) {
+            current = current->next;
+        }
+        Node *temp = current->next;
+        current->next = temp->next;
+        free(temp);
+    }
+}
+void listdisplay(Node *head) {
+    Node *current = head;
+    printf("Current Linked List: ");
+    while (current != NULL) {
+        printf("%d ", current->value);
+        current = current->next;
+    }
+    printf("\n");
+}
+
+//STACKS FUNCTIONS
+void initializeStack(Stack* stack) {
+    stack->top = -1;
+    stack->data = (int*) malloc(stack->max_size * sizeof(int));
+}
+int isEmpty(Stack* stack) {
+    return stack->top == -1;
+}
+int isFull(Stack* stack) {
+    return stack->top == stack->max_size - 1;
+}
+void push(Stack* stack, int value) {
+    if (isFull(stack)) {
+        printf("Stack is full. Cannot push %d.\n", value);
+    } else {
+        stack->data[++stack->top] = value;
+    }
+}
+int pop(Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty. Cannot pop.\n");
+        return -1;
+    } else {
+        int poppedValue = stack->data[stack->top--];
+        return poppedValue;
+    }
+}
+void displayStack(Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty.\n");
+    } else {
+        printf("Stack contents: ");
+        for (int i = 0; i <= stack->top; i++) {
+            printf("%d ", stack->data[i]);
+        }
+        printf("\n");
+    }
+}
+
+//QUEUE FUNCTIONS
+void initializeQueue(Queue* queue) {
+    queue->front = 0;
+    queue->rear = -1;
+    queue->data = (int*) malloc(queue->max_size * sizeof(int));
+}
+int isQueueEmpty(Queue* queue) {
+    return queue->rear < queue->front;
+}
+int isQueueFull(Queue* queue) {
+    return queue->rear == queue->max_size - 1;
+}
+void enqueue(Queue* queue, int value) {
+    if (isQueueFull(queue)) {
+        printf("Queue is full. Cannot enqueue %d.\n", value);
+    } else {
+        queue->data[++queue->rear] = value;
+    }
+}
+int dequeue(Queue* queue) {
+    if (isQueueEmpty(queue)) {
+        printf("Queue is empty. Cannot dequeue.\n");
+        return -1;
+    } else {
+        int dequeuedValue = queue->data[queue->front++];
+        return dequeuedValue;
+    }
+}
+void displayQueue(Queue* queue) {
+    if (isQueueEmpty(queue)) {
+        printf("Queue is empty.\n");
+    } else {
+        printf("Queue contents: ");
+        for (int i = queue->front; i <= queue->rear; i++) {
+            printf("%d ", queue->data[i]);
+        }
+        printf("\n");
+    }
 }

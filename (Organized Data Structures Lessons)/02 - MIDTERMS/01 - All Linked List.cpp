@@ -17,6 +17,27 @@ struct Node {
 // Global pointer declarations
 struct Node* head = NULL;
 
+// Function declarations
+struct Node* createNode(int value);
+void insertAtBeginning(int value);
+void insertAtEnd(int value);
+void insertAtPosition(int value, int position);
+void insertSorted(int value);
+void deleteNode(int value);
+void deleteAtPosition(int position);
+int search(int value);
+void displayList();
+int countNodes();
+int calculateSum();
+int findMax();
+int findMin();
+float calculateAverage();
+void reverseList();
+void freeList();
+void createList();
+void createSortedList();
+void showMenu();
+
 // Function to create a new node
 struct Node* createNode(int value) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
