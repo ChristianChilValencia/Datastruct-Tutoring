@@ -131,4 +131,3 @@ void displayScores(char *player1, int player1Score, char *player2, int player2Sc
     printf("%s: %d\n", player1, player1Score);
     printf("%s: %d\n", player2, player2Score);
 }
-

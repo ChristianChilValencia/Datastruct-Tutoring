@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>  // For qsort function
+
 
 int arrlinsearch(int arr[], int size, int value) {
     for (int i = 0; i < size; i++) {
@@ -10,6 +12,20 @@ int arrlinsearch(int arr[], int size, int value) {
 }
 
 int arrbinsearch(int arr[], int size, int value) {
+    // Check if array is sorted
+    int isSorted = 1;
+    for (int i = 0; i < size - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+            printf("Warning: Array is not sorted. Sorting before binary search...\n");
+            // Sort the array using qsort
+            qsort(arr, size, sizeof(int), compare);
+            printf("Array has been sorted for binary search.\n");
+            isSorted = 0;
+            break;
+        }
+    }
+    
+    // If array is sorted, proceed with binary search
     int left = 0;
     int right = size - 1;
 
@@ -28,6 +44,10 @@ int arrbinsearch(int arr[], int size, int value) {
     }
 
     return -1;
+}
+// Function to compare integers for qsort
+int compare(const void* a, const void* b) {
+    return (*(int*)a - *(int*)b);
 }
 
 void arrinsert(int arr[], int *size, int pos, int value) {
