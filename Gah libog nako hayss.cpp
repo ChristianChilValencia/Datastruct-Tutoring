@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-int insert(int size,int a[],int element, int temp);
-int remove(int size,int a[], int element, int del);
 int linearfind(int size,int a[], int search);
 int binaryfind(int size, int a[], int search);
+int insert(int size,int a[],int element, int temp);
+int remove(int size,int a[], int element, int del);
 
 
 int main(){
@@ -86,9 +86,9 @@ int insert(int size,int a[],int element, int temp){
 		
 		
 	for(int i = size-1;i>=temp;i--){
-		a[i+1] = a[i];
+		a[i+1] = a[i]; 
 	}
-   a[temp] = element;
+   a[temp] = element; 
    
    return (size+1);
 }
@@ -114,16 +114,16 @@ int remove(int size, int a[], int element, int del) {
     }
 }
 
-int linearfind(int size,int a[], int search){
-	for(int i = 0;i<size;i++){
-		if(a[i] == search){
-			printf("Element %d is in index %d\n\n", search, i);
-			return 1;
-		}else{
-			printf("No such thing :(\n");
-			return size;
-		}
-	}
+int linearfind(int size, int a[], int search) {
+    for (int i = 0; i < size; i++) {
+        if (a[i] == search) {
+            printf("Element %d is in index %d\n\n", search, i);
+            return 1; 
+        }
+    }
+    
+    printf("No such thing :(\n");
+    return 0; 
 }
 
 int binaryfind(int size, int a[], int search){
@@ -131,13 +131,15 @@ int binaryfind(int size, int a[], int search){
 	int indexincrease = size;
 	int indexdecrease = 0;
 	
+	
 	while(left<=size-1){
 	int mid = left + (size-left)/2;
 	
 	if(search == a[mid]){
 	    printf("Element %d is in index %d\n\n", search, a[mid-1]);
 			return 1;
-	} 
+	}
+	 
 		if(a[mid] > search){
 			size = mid;
 			indexincrease = mid;
@@ -145,8 +147,8 @@ int binaryfind(int size, int a[], int search){
 			left = mid + 1;
 			indexdecrease = mid;
 		}
+		
 	}
 	
 	return size;
-	
 }
