@@ -25,7 +25,6 @@ int main(){
 	
 	printf("\n");
 	
-	
 	display(a,b,c,average,times,count);
 	
 	
@@ -33,16 +32,16 @@ int main(){
 
 }
 
-int add(int a,int b, int c, int times[2][3][3]){
-       int add = 0;
+int add(int a,int b, int c, int times[2][3][3]){  
+    int add = 0;
        
-		for(a = 1;a<2;a++){
-		for(b = 0;b<3;b++){
-			for(c = 0;c<3;c++){
-				add+=times[a][b][c];
-			}
+  for(a = 1;a<2;a++){
+		 for(b = 0;b<3;b++){
+			   for(c = 0;c<3;c++){
+			  	add+=times[a][b][c];
+			 }
 		}
-	}
+	 }
 	
 	return add;
 	
@@ -50,7 +49,7 @@ int add(int a,int b, int c, int times[2][3][3]){
 
 void display(int a,int b,int c,float average,int times[2][3][3],int count){
 	
-		for(a = 1;a<2;a++){
+	for(a = 1;a<2;a++){
 		for(b = 0;b<3;b++){
 			for(c = 0;c<3;c++){
 				count++;
@@ -62,11 +61,10 @@ void display(int a,int b,int c,float average,int times[2][3][3],int count){
 	for(a = 0;a<1;a++){
 		for(b = 0;b<3;b++){
 			for(c = 0;c<3;c++){
-				printf("%.2f ", (times[a][b][c]*average)/count);
+				printf("%.2f \t", (times[a][b][c]*average)/count);
 			}
 			printf("\n");
 		}
 	}
 		
 }
-   

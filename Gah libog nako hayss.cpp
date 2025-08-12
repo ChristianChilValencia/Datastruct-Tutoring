@@ -2,6 +2,8 @@
 
 int insert(int size,int a[],int element, int temp);
 int remove(int size,int a[], int element, int del);
+int linearfind(int size,int a[], int search);
+int binaryfind(int size, int a[], int search);
 
 
 int main(){
@@ -9,6 +11,7 @@ int main(){
 	int size;
 	int element,temp;
     int del;
+    int search;
 
 	
 	printf("Enter the size first: ");
@@ -23,11 +26,12 @@ int main(){
 
 	
 	do{
-	printf("\n=========\n");
+	printf("\nDecide\n");
 	printf("1. Insert\n");
 	printf("2. Delete\n");
-	printf("3. Exit\n");
-	printf("=========\n\n");
+    printf("3. Linear Search\n");
+    printf("4. Binary Search\n");
+	printf("5. Exit\n\n");
 	
 	printf("Stored Integer: ");
 	for(int i = 0;i<size;i++){
@@ -55,11 +59,21 @@ int main(){
 		scanf("%d", &del); 
 		size = remove(size,a,element,del);
 		break;
-		case 3: printf("\n!!Thanks for Using my friend!!"); break;
+		case 3:
+		printf("Enter the number you wanna search: ");
+		scanf("%d", &search);
+		linearfind(size,a,search);
+		break;
+		case 4:
+		printf("Enter the number you wanna search: ");
+		scanf("%d", &search);
+		binaryfind(size,a,search);
+		break;
+		case 5: printf("\n!!Thanks for Using my friend!!"); break;
 		default: printf("Not in the list my friend\n"); break;
 	}
 		
-	}while(choice!=3);
+	}while(choice!=5);
 	
 	return 0;
 }
@@ -98,4 +112,41 @@ int remove(int size, int a[], int element, int del) {
         printf("No such element with %d\n", del);
         return size;
     }
+}
+
+int linearfind(int size,int a[], int search){
+	for(int i = 0;i<size;i++){
+		if(a[i] == search){
+			printf("Element %d is in index %d\n\n", search, i);
+			return 1;
+		}else{
+			printf("No such thing :(\n");
+			return size;
+		}
+	}
+}
+
+int binaryfind(int size, int a[], int search){
+	int left = 0;
+	int indexincrease = size;
+	int indexdecrease = 0;
+	
+	while(left<=size-1){
+	int mid = left + (size-left)/2;
+	
+	if(search == a[mid]){
+	    printf("Element %d is in index %d\n\n", search, a[mid-1]);
+			return 1;
+	} 
+		if(a[mid] > search){
+			size = mid;
+			indexincrease = mid;
+		}else{
+			left = mid + 1;
+			indexdecrease = mid;
+		}
+	}
+	
+	return size;
+	
 }
